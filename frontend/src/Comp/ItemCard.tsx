@@ -60,7 +60,7 @@ export const ItemCard = () => {
                     <Image
                         objectFit='cover'
                         maxW={{ base: '100%', sm: '200px' }}
-                        src='https://img.freepik.com/premium-vector/3d-medicine-icon-vector-isolated-white-background-3d-pharmacy-medical-healthcare-concept-cartoon-minimal-style-3d-drug-icon-vector-render-illustration_726846-5915.jpg?w=2000'
+                        src={item.url}
                         alt='Medicine'
                     />
 

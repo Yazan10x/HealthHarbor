@@ -4,4 +4,5 @@ export interface HealthItem {
     label: string
     quantity: number
     description: string
+    url: string
 }

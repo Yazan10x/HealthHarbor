@@ -6,7 +6,7 @@ def create_item_table() -> None:
     conn = get_conn()
     with conn.cursor() as cur:
         cur.execute(
-            "CREATE TABLE IF NOT EXISTS items (id UUID PRIMARY KEY, label VARCHAR(256), quantity INTEGER, description TEXT)"
+            "CREATE TABLE IF NOT EXISTS items (id UUID PRIMARY KEY, label VARCHAR(255), quantity INTEGER, description TEXT, url VARCHAR(255))"
         )
         logging.debug("create_item_table(): status message: %s",
                         cur.statusmessage)
@@ -58,7 +58,7 @@ def create_item(item: dict) -> dict:
     conn = get_conn()
     with conn.cursor() as cur:
         cur.execute(
-            f"INSERT INTO items (id, label, quantity, description) VALUES ('{item['id']}', '{item['label']}', {item['quantity']}, '{item['description']}')"
+            f"INSERT INTO items (id, label, quantity, description, url) VALUES ('{item['id']}', '{item['label']}', {item['quantity']}, '{item['description']}', '{item['url']}')"
         )
         logging.debug("create_item(): status message: %s",
                         cur.statusmessage)
@@ -73,7 +73,7 @@ def update_item(item: dict) -> dict:
     conn = get_conn()
     with conn.cursor() as cur:
         cur.execute(
-            f"UPDATE items SET label = '{item['label']}', quantity = {item['quantity']}, description = '{item['description']}' WHERE id = '{item['id']}'"
+            f"UPDATE items SET label = '{item['label']}', quantity = {item['quantity']}, description = '{item['description']}', url = '{item['url']}' WHERE id = '{item['id']}'"
         )
         logging.debug("update_item(): status message: %s",
                         cur.statusmessage)
@@ -125,5 +125,10 @@ def delete_item(id: str) -> bool:
 
 # print(get_items('SELECT * FROM items'))
 
+delete_item_table()
+create_item_table()
 
+item =  '{ "id": "35998002-7e37-443f-ab43-e4ed7517dce3", "label":"hello hello!", "quantity":1, "description": "test", "url": "google.com"}'
+item_json = json.loads(item)
+create_item(item_json)
 print(get_items('SELECT * FROM items'))
