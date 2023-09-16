@@ -25,23 +25,20 @@ export const ItemCard = () => {
     const [item, setItem] = useState<HealthItem | undefined>(undefined);
     const toast = useToast()
 
-    function ShowToast() {
-        return (
-            toast({
-                title: 'QR Code Scanned',
-                description: "We are searching for you.",
-                status: 'success',
-                duration: 9000,
-                isClosable: true,
-            })
-        )
-    }
-
     const get_item = () => {
         ItemAPI.get_item(item_id!).then((res) =>{
             setItem(res)
             console.log(res.label)
             console.log(res.quantity)
+            return (
+                toast({
+                    title: 'QR Code Scanned',
+                    description: "We are searching for you.",
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                })
+            )
         })
     }
 
@@ -60,7 +57,7 @@ export const ItemCard = () => {
                     <Image
                         objectFit='cover'
                         maxW={{ base: '100%', sm: '200px' }}
-                        src={item.url}
+                        src='https://img.freepik.com/premium-vector/3d-medicine-icon-vector-isolated-white-background-3d-pharmacy-medical-healthcare-concept-cartoon-minimal-style-3d-drug-icon-vector-render-illustration_726846-5915.jpg?w=2000'
                         alt='Medicine'
                     />
 
@@ -96,7 +93,6 @@ export const ItemCard = () => {
                         <Skeleton height='100px' width={"100%"}/>
                     </HStack>
                     <Skeleton height='100px' width={"100%"}/>
-                    {ShowToast()}
                 </Stack>
             }
         </>
