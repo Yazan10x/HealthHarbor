@@ -242,14 +242,14 @@ interface NavItem {
 const NAV_ITEMS_FOR_ANONYMOUS_USER: Array<NavItem> = [
   {
     label: 'Home',
-    route: 'home'
+    route: 'search'
+  },
+  {
+    label: 'Scan',
+    route: 'scanner'
   },
   {
     label: 'Items',
     route: 'items'
-  },
-  {
-    label: 'Search',
-    route: 'search'
   },
 ]

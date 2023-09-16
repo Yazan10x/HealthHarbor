@@ -10,7 +10,7 @@ export const Dashboard: React.FC = (props) =>  {
 
     useEffect(() => {
         if (location.pathname === "/"){
-            navigate("/home");
+            navigate("/search");
         }
     },[])
 
