@@ -24,7 +24,7 @@ def delete_item_table() -> None:
     close_conn(conn)
 
 
-def get_item(id: str) -> str:
+def get_item(id: str) -> dict:
     conn = get_conn()
     with conn.cursor() as cur:
         cur.execute(
@@ -34,7 +34,7 @@ def get_item(id: str) -> str:
                         cur.statusmessage)
 
         # assume get_item always returns exactly one entry
-        item = json.dumps(cur.fetchone())
+        item = cur.fetchone()
     conn.commit()
     close_conn(conn)
 
@@ -47,7 +47,7 @@ def get_items(query: str) -> [str]:
         cur.execute(query)
         logging.debug("get_items(): status message: %s",
                         cur.statusmessage)
-        items = [json.dumps(dict) for dict in cur.fetchall()]
+        items = [_dict for _dict in cur.fetchall()]
     conn.commit()
     close_conn(conn)
 
