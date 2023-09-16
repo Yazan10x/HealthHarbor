@@ -106,7 +106,7 @@ const DesktopNav = ({items}: navigation_items_props) => {
   return (
     <Stack direction={'row'} spacing={4}>
       {items.map((navItem) => (
-        <Box key={navItem.label}>
+        <Box key={navItem.label} >
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
               <Link
@@ -247,5 +247,9 @@ const NAV_ITEMS_FOR_ANONYMOUS_USER: Array<NavItem> = [
   {
     label: 'Items',
     route: 'items'
+  },
+  {
+    label: 'Search',
+    route: 'search'
   },
 ]
