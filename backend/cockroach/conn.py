@@ -1,16 +1,12 @@
-import os, sys
-from argparse import ArgumentParser, RawTextHelpFormatter
+import os
 
 import logging
 import psycopg2
-from psycopg2.errors import SerializationFailure
 import psycopg2.extras
-
-from health_items import *
 
 from dotenv import load_dotenv
 
-def get_cursor() -> None:
+def get_conn():
     load_dotenv()
     try:
 
@@ -29,23 +25,7 @@ def get_cursor() -> None:
         logging.fatal(e)
         return
     
-    with conn.cursor() as cur:
-
-
-        # item =  '{ "id": "35998002-7e37-443f-ab43-e4ed7517dce3", "label":"s", "quantity":123}'
-        # item_json = json.loads(item)
-        # print(item_json)
-        # create_item(item_json, cur)
-
-
-        # add functions here
-
-        q = get_item("35998002-7e37-443f-ab43-e4ed7517dce3", cur)
-        print(q)
-
-    conn.commit()
-
-    # Close communication with the database.
+    return conn
+    
+def close_conn(conn) -> None:
     conn.close()
-
-get_cursor()
