@@ -11,7 +11,8 @@ import {
     Text,
     Button,
     Skeleton,
-    useToast
+    useToast,
+    Badge
 } from '@chakra-ui/react'
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
@@ -21,7 +22,7 @@ import {ItemAPI} from "../APIs/ItemAPI";
 export const ItemCard = () => {
 
     let {item_id} = useParams();
-    const [item, setItem] = useState<HealthItem>();
+    const [item, setItem] = useState<HealthItem | undefined>(undefined);
     const toast = useToast()
 
     function ShowToast() {
@@ -39,12 +40,14 @@ export const ItemCard = () => {
     const get_item = () => {
         ItemAPI.get_item(item_id!).then((res) =>{
             setItem(res)
+            console.log(res.label)
+            console.log(res.quantity)
         })
     }
 
     useEffect(() => {
-        // get_item()
-    })
+        get_item()
+    }, [])
 
     return (
         <>
@@ -63,12 +66,13 @@ export const ItemCard = () => {
 
                     <Stack>
                         <CardBody>
-                            <Heading size='md'>{}</Heading>
+                            <Heading size='md'>{item?.label}</Heading>
 
+                            <Badge colorScheme={'purple'}>{"Quantity: " + item.quantity}</Badge>
                             <Text py='2'>
-                                Caffè latte is a coffee beverage of Italian origin made with espresso
-                                and steamed milk.
+                                {item.description}
                             </Text>
+
                         </CardBody>
 
                         <CardFooter>
