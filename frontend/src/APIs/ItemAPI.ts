@@ -34,4 +34,11 @@ export namespace ItemAPI {
             })
     }
 
+    export const delete_item = async (item_id: string) => {
+        return FLASK_HTTPS.get(route_name + "/delete_item/" + item_id)
+            .then((res) => {
+                return res.data as boolean
+            })
+    }
+
 }
