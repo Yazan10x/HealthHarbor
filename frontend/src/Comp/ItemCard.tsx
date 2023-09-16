@@ -3,6 +3,7 @@ import {
     Card,
     HStack,
     Spacer,
+    Center,
     CardBody,
     CardFooter,
     Image,

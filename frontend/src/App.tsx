@@ -15,6 +15,7 @@ import {Home} from "./Pages/Home";
 import {Search} from "./Pages/Search";
 import {QrScanner} from "./Comp/QrScanner";
 import {ItemCard} from "./Comp/ItemCard";
+import {Items} from "./Pages/Items";
 
 const theme = extendTheme({
   initialColorMode: 'dark',
