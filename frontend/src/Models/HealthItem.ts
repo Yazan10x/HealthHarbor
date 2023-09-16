@@ -1,6 +1,6 @@
 
 export interface HealthItem {
-    uid: string
+    id: string
     label: string
     quantity: number
     description: string

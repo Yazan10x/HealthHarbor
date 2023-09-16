@@ -125,10 +125,9 @@ def delete_item(id: str) -> bool:
 
 # print(get_items('SELECT * FROM items'))
 
-delete_item_table()
-create_item_table()
+# create_item_table()
 
-item =  '{ "id": "35998002-7e37-443f-ab43-e4ed7517dce3", "label":"hello hello!", "quantity":1, "description": "test", "url": "google.com"}'
-item_json = json.loads(item)
-create_item(item_json)
-print(get_items('SELECT * FROM items'))
+# item =  '{ "id": "35998002-7e37-443f-ab43-e4ed7517dce3", "label":"hello hello!", "quantity":1, "description": "test", "url": "google.com"}'
+# item_json = json.loads(item)
+# create_item(item_json)
+# print(get_items('SELECT * FROM items'))

@@ -21,9 +21,9 @@ def get_item(item_id: str) -> Response:
     return jsonify(get(item_id))
 
 
-@health_item.route("/get_items", methods=['GET'])
+@health_item.route("/get_items", methods=['POST'])
 def get_items() -> Response:
-    return get_multiple("SELECT * FROM items")
+    return get_multiple(request.get_json())
 
 
 @health_item.route("/create_item", methods=['POST'])

@@ -14,7 +14,7 @@ export namespace ItemAPI {
     }
 
     export const get_items = async (query: any) => {
-        return FLASK_HTTPS.get(route_name + "/get_items", query)
+        return FLASK_HTTPS.post(route_name + "/get_items", query)
             .then((res) => {
                 return res.data as Array<HealthItem>
             })

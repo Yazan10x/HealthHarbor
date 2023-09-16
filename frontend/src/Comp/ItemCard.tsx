@@ -43,15 +43,15 @@ export const ItemCard = ({_item_id}: Props) => {
             setItem(res)
             console.log(res.label)
             console.log(res.quantity)
-            return (
+            if (item_id) {
                 toast({
                     title: 'QR Code Scanned',
                     description: "We are searching for you.",
                     status: 'success',
                     duration: 5000,
                     isClosable: true,
-                })
-            )
+                })                
+            }
         })
     }
 

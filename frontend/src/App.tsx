@@ -12,6 +12,7 @@ import {
 import {Dashboard} from "./Pages/Dashboard/Dashboard";
 import {NotFound} from "./Pages/Other/NotFound";
 import {Home} from "./Pages/Home";
+import {Items} from "./Pages/Items"
 import {Search} from "./Pages/Search";
 import {QrScanner} from "./Comp/QrScanner";
 import {ItemCard} from "./Comp/ItemCard";
@@ -40,7 +41,7 @@ export const App = () => (
         <Route path="/" element={<Dashboard/>}>
           <Route path="/search" element={<Search/>}/>
           <Route path="/scanner" element={<QrScanner/>}/>
-          <Route path="/items" element={<></>}/>
+          <Route path="/items" element={<Items/>}/>
           <Route path="/item/:item_id" element={<ItemCard/>}/>
         </Route>
 
