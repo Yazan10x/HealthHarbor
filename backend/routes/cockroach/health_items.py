@@ -1,6 +1,7 @@
 import logging, json
 from routes.cockroach.conn import *
 
+
 def create_item_table() -> None:
     conn = get_conn()
     with conn.cursor() as cur:
@@ -12,6 +13,7 @@ def create_item_table() -> None:
     conn.commit()
     close_conn(conn)
 
+
 def delete_item_table() -> None:
     conn = get_conn()
     with conn.cursor() as cur:
@@ -22,9 +24,6 @@ def delete_item_table() -> None:
     close_conn(conn)
 
 
-
-
-
 def get_item(id: str) -> str:
     conn = get_conn()
     with conn.cursor() as cur:
@@ -33,7 +32,7 @@ def get_item(id: str) -> str:
         )
         logging.debug("get_item(): status message: %s",
                         cur.statusmessage)
-        
+
         # assume get_item always returns exactly one entry
         item = json.dumps(cur.fetchone())
     conn.commit()
@@ -53,10 +52,11 @@ def get_items(query: str) -> [str]:
     close_conn(conn)
 
     return items
-    
+
+
 def create_item(item: dict) -> dict:
     conn = get_conn()
-    with conn.cursor() as cur: 
+    with conn.cursor() as cur:
         cur.execute(
             f"INSERT INTO items (id, label, quantity, description) VALUES ('{item['id']}', '{item['label']}', {item['quantity']}, '{item['description']}')"
         )
@@ -67,7 +67,8 @@ def create_item(item: dict) -> dict:
 
     # assume create item will always create one entry
     return item
-    
+
+
 def update_item(item: dict) -> dict:
     conn = get_conn()
     with conn.cursor() as cur:
@@ -81,7 +82,8 @@ def update_item(item: dict) -> dict:
 
     # assume update_item will always update one entry
     return item
-    
+
+
 def delete_item(id: str) -> bool:
     conn = get_conn()
     with conn.cursor() as cur:
@@ -95,7 +97,7 @@ def delete_item(id: str) -> bool:
 
     # assume delete_item will always delete one entry
     return True
-    
+
 
 # tests
 
