@@ -50,8 +50,21 @@ export const ItemCard = ({_item_id}: Props) => {
                     status: 'success',
                     duration: 5000,
                     isClosable: true,
-                })                
+                })
             }
+        })
+    }
+
+    const update_quantity = (q: number) => {
+        item!.quantity += q
+        ItemAPI.update_item(item!).then((res) => {
+            setItem(res)
+            toast({
+                title: 'Item update successfully',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            })
         })
     }
 
@@ -61,6 +74,23 @@ export const ItemCard = ({_item_id}: Props) => {
 
     return (
         <>
+            {item_id
+                ? <>
+                    <Center>
+                        <Heading
+                            display="inline-block"
+                            as="h2"
+                            size="md"
+                            bgGradient="linear(to-r, brand.300, brand.200)"
+                            backgroundClip="text">
+                            Health Harbor - Single Item View
+                        </Heading>
+                        <Spacer/>
+                    </Center>
+                </>
+                :
+                <></>
+            }
             { item ?
                 <Card
                     direction={{ base: 'column', sm: 'row' }}
@@ -91,6 +121,7 @@ export const ItemCard = ({_item_id}: Props) => {
                                     bgGradient="linear(to-r, brand.300, brand.200)"
                                     color="white"
                                     variant="solid"
+                                    onClick={() => {update_quantity(-1)}}
                                 >
                                     Check out
                                 </Button>
@@ -98,6 +129,7 @@ export const ItemCard = ({_item_id}: Props) => {
                                     bgGradient="linear(to-r, brand.200, brand.100)"
                                     color="white"
                                     variant="solid"
+                                    onClick={() => {update_quantity(1)}}
                                 >
                                     Check in
                                 </Button>

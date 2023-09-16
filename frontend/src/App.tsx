@@ -12,7 +12,6 @@ import {
 import {Dashboard} from "./Pages/Dashboard/Dashboard";
 import {NotFound} from "./Pages/Other/NotFound";
 import {Home} from "./Pages/Home";
-import {Items} from "./Pages/Items"
 import {Search} from "./Pages/Search";
 import {QrScanner} from "./Comp/QrScanner";
 import {ItemCard} from "./Comp/ItemCard";
@@ -34,9 +33,9 @@ const theme = extendTheme({
 })
 
 export const App = () => (
-  <ChakraProvider theme={theme}>
-    <BrowserRouter>
-      <Routes>
+    <ChakraProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
 
         <Route path="/" element={<Dashboard/>}>
           <Route path="/search" element={<Search/>}/>
@@ -45,9 +44,9 @@ export const App = () => (
           <Route path="/item/:item_id" element={<ItemCard/>}/>
         </Route>
 
-        <Route path="*" element={<NotFound/>}/>
+          <Route path="*" element={<NotFound/>}/>
 
-      </Routes>
-    </BrowserRouter>
-  </ChakraProvider>
+        </Routes>
+      </BrowserRouter>
+    </ChakraProvider>
 )
