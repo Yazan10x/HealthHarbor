@@ -17,16 +17,29 @@ import {
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {ItemAPI} from "../APIs/ItemAPI";
+import * as React from "react";
+
+interface Props {
+    _item_id?: string | undefined
+}
 
 
-export const ItemCard = () => {
+export const ItemCard = ({_item_id}: Props) => {
 
     let {item_id} = useParams();
+    let final_item_id: string;
+
+    if (_item_id) {
+        final_item_id = _item_id
+    } else {
+        final_item_id = item_id!
+    }
+
     const [item, setItem] = useState<HealthItem | undefined>(undefined);
     const toast = useToast()
 
     const get_item = () => {
-        ItemAPI.get_item(item_id!).then((res) =>{
+        ItemAPI.get_item(final_item_id!).then((res) =>{
             setItem(res)
             console.log(res.label)
             console.log(res.quantity)
@@ -57,8 +70,8 @@ export const ItemCard = () => {
                     <Image
                         objectFit='cover'
                         maxW={{ base: '100%', sm: '200px' }}
-                        src='https://img.freepik.com/premium-vector/3d-medicine-icon-vector-isolated-white-background-3d-pharmacy-medical-healthcare-concept-cartoon-minimal-style-3d-drug-icon-vector-render-illustration_726846-5915.jpg?w=2000'
-                        alt='Medicine'
+                        src={item.url}
+                        alt={item.url}
                     />
 
                     <Stack>
@@ -73,9 +86,22 @@ export const ItemCard = () => {
                         </CardBody>
 
                         <CardFooter>
-                            <Button variant='solid' colorScheme='blue'>
-                                Buy Latte
-                            </Button>
+                            <HStack>
+                                <Button
+                                    bgGradient="linear(to-r, brand.300, brand.200)"
+                                    color="white"
+                                    variant="solid"
+                                >
+                                    Check out
+                                </Button>
+                                <Button
+                                    bgGradient="linear(to-r, brand.200, brand.100)"
+                                    color="white"
+                                    variant="solid"
+                                >
+                                    Check in
+                                </Button>
+                            </HStack>
                         </CardFooter>
                     </Stack>
                 </Card>
