@@ -2,13 +2,6 @@
 
 import logging, json
 
-
-
-def get(query) -> dict:
-    pass
-
-
-
 def create_item_table(cur) -> None:
     cur.execute(
         "CREATE TABLE IF NOT EXISTS items (id UUID PRIMARY KEY, label VARCHAR(256), quantity INTEGER)"
