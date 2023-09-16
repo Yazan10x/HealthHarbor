@@ -2,9 +2,6 @@ import cohere
 from cohere.responses.classify import Example
 from cohere.responses.classify import LabelPrediction
 from cohere.responses.classify import Classification
-
-
-
 import pandas as pd
 import numpy as np
 from imblearn.over_sampling import RandomOverSampler
@@ -22,7 +19,7 @@ import heapq
 
 # print(lista)
 
-def get_disease_with_medicine(dscr: str) -> list[dict[str, str]]:
+def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
   co = cohere.Client('dW7n7345zsD7VRvluLFqZbRZLtMZfdm3Zf7CS0DA')
   df = pd.read_csv("backend\cohere_api\healthHarborModel\datasets\drugs_side_effects_drugs_com.csv", usecols=['medical_condition', 'medical_condition_description', 'drug_name'])
 
@@ -34,8 +31,8 @@ def get_disease_with_medicine(dscr: str) -> list[dict[str, str]]:
   for inx, row in dfCondCopy.items():
     if row not in DictDesToDrug.keys():
       DictDesToDrug[row] = dfDrugs[l]
-    l+=1 
-  
+    l+=1
+
   # print(DictDesToDrug)
 
   examples =[]
@@ -51,7 +48,7 @@ def get_disease_with_medicine(dscr: str) -> list[dict[str, str]]:
   for index, row in transformed_df.iterrows():
       examples.append(Example(row["medical_condition_description"], row["medical_condition"]))
 
-  inputs=[dscr]
+  inputs=[description]
 
   response = co.classify(
     inputs=inputs,
@@ -68,7 +65,7 @@ def get_disease_with_medicine(dscr: str) -> list[dict[str, str]]:
 
   top = heapq.nlargest(numOfSuggestions, LabelsDict.values())
   topnames = []
-  for j in range(numOfSuggestions): 
+  for j in range(numOfSuggestions):
     for i in LabelsDict.keys():
         if LabelsDict[i]==top[j]:
             Dctionr = {'rank': j, 'medicine': DictDesToDrug[i], 'disease': i, 'confindence': LabelsDict[i]}
@@ -78,9 +75,8 @@ def get_disease_with_medicine(dscr: str) -> list[dict[str, str]]:
 
 
 
-     
+
 if __name__ == '__main__':
-   print(get_disease_with_medicine("Big red spots on body"))
-   print(get_disease_with_medicine("Really stressed about exams. Want to Kill myself."))
+   print(_get_disease_with_medicine("Big red spots on body"))
+   print(_get_disease_with_medicine("Really stressed about exams. Want to Kill myself."))
    # "Big red spots on body", "Really stressed about exams. Want to Kill myself.", "pain in left arm"
-  

@@ -1,3 +1,4 @@
+from cohere_api.healthHarborModel.classificationModel import _get_disease_with_medicine
 
 return_sample = [
     {
@@ -21,7 +22,7 @@ return_sample = [
 
     },
 ]
-    
 
-def get_disease_with_medicine(dscr: str) -> list[dict[str, str]]:
-    pass
+
+def get_disease_with_medicine(description: str) -> list[dict[str, str]]:
+    return _get_disease_with_medicine(description)
