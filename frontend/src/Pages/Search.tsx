@@ -47,7 +47,7 @@ export const Search = () => {
                         <Heading
                             display="inline-block"
                             as="h2"
-                            size="md"
+                            size="lg"
                             bgGradient="linear(to-r, brand.300, brand.200)"
                             backgroundClip="text">
                             Search

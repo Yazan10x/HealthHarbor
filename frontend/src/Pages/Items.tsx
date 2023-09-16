@@ -1,5 +1,8 @@
 import {
-    SimpleGrid
+    SimpleGrid,
+    Box,
+    Heading,
+    Center
 } from '@chakra-ui/react';
 import {HealthItem} from "../Models/HealthItem";
 import * as React from "react";
@@ -27,7 +30,19 @@ export const Items = () => {
 
     return (
         <>
-            <SimpleGrid  columns={[null, 1, 3]} spacing='20px'>
+            <Center>
+                <Box>
+                    <Heading
+                        display="inline-block"
+                        as="h2"
+                        size="lg"
+                        bgGradient="linear(to-r, brand.300, brand.200)"
+                        backgroundClip="text">
+                        Items
+                    </Heading>
+                </Box>
+            </Center>
+            <SimpleGrid  columns={[null, 1, 2]} spacing='20px'>
                 {items?.map(item => <ItemCard _item_id={`${item.id}`}/>)}
             </SimpleGrid>
         </>
