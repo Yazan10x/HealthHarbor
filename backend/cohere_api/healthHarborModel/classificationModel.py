@@ -30,7 +30,7 @@ def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
   l = 0
   for inx, row in dfCondCopy.items():
     if row not in DictDesToDrug.keys():
-      DictDesToDrug[row] = dfDrugs[l]
+      DictDesToDrug[row] = str(dfDrugs[l]).capitalize()
     l+=1
 
   print(DictDesToDrug)
@@ -53,7 +53,7 @@ def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
   response = co.classify(
     inputs=inputs,
     examples=examples,
-    model="embed-multilingual-v2.0"
+    # model="embed-multilingual-v2.0" - got everything wrong
   )
 
   LabelsDict = {}
