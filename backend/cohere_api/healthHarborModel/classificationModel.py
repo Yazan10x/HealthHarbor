@@ -21,7 +21,7 @@ import heapq
 
 def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
   co = cohere.Client('dW7n7345zsD7VRvluLFqZbRZLtMZfdm3Zf7CS0DA')
-  df = pd.read_csv("backend\cohere_api\healthHarborModel\datasets\drugs_side_effects_drugs_com.csv", usecols=['medical_condition', 'medical_condition_description', 'drug_name'])
+  df = pd.read_csv("cohere_api/healthHarborModel/datasets/drugs_side_effects_drugs_com.csv", usecols=['medical_condition', 'medical_condition_description', 'drug_name'])
 
   dfDrugs = df['drug_name']
   df.drop('drug_name', axis=1)
@@ -72,9 +72,7 @@ def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
             Dctionr = {'rank': j, 'medicine': DictDesToDrug[i], 'disease': i, 'confidence': LabelsDict[i] * 100}
             topnames.append(Dctionr)
 
-    return topnames
-
-
+  return topnames
 
 
 if __name__ == '__main__':
