@@ -5,20 +5,20 @@ return_sample = [
         'rank': 1,
         'medicine': 'tynanol',
         'disease': 'headache',
-        'confindence': 0.33
+        'confidence': 0.33
     },
     {
         'rank': 2,
         'medicine': 'tynanol',
         'disease': 'headache',
-        'confindence': 0.24
+        'confidence': 0.24
 
     },
     {
         'rank': 3,
         'medicine': 'tynanol',
         'disease': 'headache',
-        'confindence': 0.12
+        'confidence': 0.12
 
     },
 ]

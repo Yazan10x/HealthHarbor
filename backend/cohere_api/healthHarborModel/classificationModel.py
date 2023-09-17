@@ -21,7 +21,7 @@ import heapq
 
 def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
   co = cohere.Client('dW7n7345zsD7VRvluLFqZbRZLtMZfdm3Zf7CS0DA')
-  df = pd.read_csv("backend\cohere_api\healthHarborModel\datasets\drugs_side_effects_drugs_com.csv", usecols=['medical_condition', 'medical_condition_description', 'drug_name'])
+  df = pd.read_csv("cohere_api/healthHarborModel/datasets/drugs_side_effects_drugs_com.csv", usecols=['medical_condition', 'medical_condition_description', 'drug_name'])
 
   dfDrugs = df['drug_name']
   df.drop('drug_name', axis=1)
@@ -30,10 +30,10 @@ def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
   l = 0
   for inx, row in dfCondCopy.items():
     if row not in DictDesToDrug.keys():
-      DictDesToDrug[row] = dfDrugs[l]
+      DictDesToDrug[row] = str(dfDrugs[l]).capitalize()
     l+=1
 
-  print(DictDesToDrug)
+  # print(DictDesToDrug)
 
   examples =[]
   X = df[df.columns[:-1]].values
@@ -53,6 +53,7 @@ def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
   response = co.classify(
     inputs=inputs,
     examples=examples,
+    # model="embed-multilingual-v2.0" - got everything wrong
   )
 
   LabelsDict = {}
@@ -68,15 +69,13 @@ def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
   for j in range(numOfSuggestions):
     for i in LabelsDict.keys():
         if LabelsDict[i]==top[j]:
-            Dctionr = {'rank': j, 'medicine': DictDesToDrug[i], 'disease': i, 'confindence': LabelsDict[i]}
+            Dctionr = {'rank': j, 'medicine': DictDesToDrug[i], 'disease': i, 'confidence': LabelsDict[i] * 100}
             topnames.append(Dctionr)
 
   return topnames
 
 
-
-
 if __name__ == '__main__':
-   print(_get_disease_with_medicine("Big red spots on body"))
-   print(_get_disease_with_medicine("Really stressed about exams. Want to Kill myself."))
-   # "Big red spots on body", "Really stressed about exams. Want to Kill myself.", "pain in left arm"
+    print(_get_disease_with_medicine("Big red spots on body"))
+    print(_get_disease_with_medicine("Really stressed about exams. Want to Kill myself."))
+    # "Big red spots on body", "Really stressed about exams. Want to Kill myself.", "pain in left arm"
