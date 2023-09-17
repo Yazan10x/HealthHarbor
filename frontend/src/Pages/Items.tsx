@@ -2,7 +2,7 @@ import {
     SimpleGrid,
     Box,
     Heading,
-    Center
+    Center, Spacer
 } from '@chakra-ui/react';
 import {HealthItem} from "../Models/HealthItem";
 import * as React from "react";
@@ -40,6 +40,7 @@ export const Items = () => {
                         backgroundClip="text">
                         Items
                     </Heading>
+                    <Spacer height={20}/>
                 </Box>
             </Center>
             <SimpleGrid  columns={[null, 1, 2]} spacing='20px'>
