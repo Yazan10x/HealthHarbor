@@ -40,6 +40,21 @@ def get_item(id: str) -> dict:
 
     return item
 
+def get_item_by_label(label: str) -> dict:
+    conn = get_conn()
+    with conn.cursor() as cur:
+        cur.execute(
+            f"SELECT * FROM items WHERE label = '{label}'"
+        )
+        logging.debug("get_item(): status message: %s",
+                        cur.statusmessage)
+
+        # assume get_item_by_label always returns exactly one entry
+        item = cur.fetchone()
+    conn.commit()
+    close_conn(conn)
+
+    return item
 
 def get_items(query: str) -> [str]:
     conn = get_conn()

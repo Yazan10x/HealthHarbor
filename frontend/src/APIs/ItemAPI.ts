@@ -13,6 +13,13 @@ export namespace ItemAPI {
             })
     }
 
+    export const get_item_by_label = async (item_label: string) => {
+        return FLASK_HTTPS.get(route_name + "/get_item_by_label/" + item_label)
+            .then((res) => {
+                return res.data as HealthItem
+            })
+    }
+
     export const get_items = async (query: any) => {
         return FLASK_HTTPS.post(route_name + "/get_items", query)
             .then((res) => {

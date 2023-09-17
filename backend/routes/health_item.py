@@ -8,6 +8,7 @@ from flask import Blueprint, Response, jsonify, request, send_file
 import json
 
 from routes.cockroach.health_items import get_item as get
+from routes.cockroach.health_items import get_item_by_label as get_by_label
 from routes.cockroach.health_items import get_items as get_multiple
 from routes.cockroach.health_items import create_item as create
 from routes.cockroach.health_items import update_item as update
@@ -19,6 +20,11 @@ health_item = Blueprint('/health_item', __name__)
 @health_item.route("/get_item/<item_id>", methods=['GET'])
 def get_item(item_id: str) -> Response:
     return jsonify(get(item_id))
+
+
+@health_item.route("/get_item_by_label/<item_label>", methods=['GET'])
+def get_item_by_label(item_label: str) -> Response:
+    return jsonify(get_by_label(item_label))
 
 
 @health_item.route("/get_items", methods=['POST'])
