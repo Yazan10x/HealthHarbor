@@ -33,7 +33,7 @@ def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
       DictDesToDrug[row] = dfDrugs[l]
     l+=1
 
-  # print(DictDesToDrug)
+  print(DictDesToDrug)
 
   examples =[]
   X = df[df.columns[:-1]].values
