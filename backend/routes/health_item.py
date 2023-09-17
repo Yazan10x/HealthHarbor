@@ -15,8 +15,8 @@ from routes.cockroach.health_items import update_item as update
 from routes.cockroach.health_items import delete_item as delete
 
 # uncomment if you want to populate the db everytime the backend starts
-from routes.cockroach.populate import populate
-populate()
+# from routes.cockroach.populate import populate
+# populate()
 
 
 health_item = Blueprint('/health_item', __name__)
