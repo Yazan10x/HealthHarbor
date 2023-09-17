@@ -37,7 +37,6 @@ emoji
 numpy==1.26.0
 dlib~=19.24.1
 firebase_admin
-Flask-API.yandex~=0.6.2.1
 psycopg2.binary==2.9.7
 cohere~=4.26.1
 imblearn~=0.0
