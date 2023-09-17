@@ -53,6 +53,7 @@ def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
   response = co.classify(
     inputs=inputs,
     examples=examples,
+    model="embed-multilingual-v2.0"
   )
 
   LabelsDict = {}
@@ -68,7 +69,7 @@ def _get_disease_with_medicine(description: str) -> list[dict[str, str]]:
   for j in range(numOfSuggestions):
     for i in LabelsDict.keys():
         if LabelsDict[i]==top[j]:
-            Dctionr = {'rank': j, 'medicine': DictDesToDrug[i], 'disease': i, 'confindence': LabelsDict[i]}
+            Dctionr = {'rank': j, 'medicine': DictDesToDrug[i], 'disease': i, 'confidence': LabelsDict[i] * 100}
             topnames.append(Dctionr)
 
   return topnames
