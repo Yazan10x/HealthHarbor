@@ -19,6 +19,7 @@ return_sample = [
         'medicine': 'tynanol',
         'disease': 'headache',
         'confidence': 0.12
+
     },
 ]
 
