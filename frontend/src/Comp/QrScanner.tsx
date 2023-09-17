@@ -1,8 +1,9 @@
 import {HealthItem} from "../Models/HealthItem";
 import {Html5QrcodeScanner} from "html5-qrcode";
 import {useEffect, useState} from "react";
-import {Box, Center, useToast, Button} from "@chakra-ui/react";
+import {Box, Center, useToast, Button, Heading, Spacer, VStack} from "@chakra-ui/react";
 import {useNavigate} from "react-router-dom";
+import * as React from "react";
 
 
 export const QrScanner = () => {
@@ -30,13 +31,22 @@ export const QrScanner = () => {
     }, [])
 
     return (
-        <Center>
+        <VStack>
+                <Heading
+                    display="inline-block"
+                    as="h2"
+                    size="md"
+                    bgGradient="linear(to-r, brand.300, brand.200)"
+                    backgroundClip="text">
+                    Health Harbor - Medicine Scanner
+                </Heading>
+                <Spacer height={20}/>
             <Box
                 width={600}
                 height={600}
             >
                 <div id="reader"></div>
             </Box>
-        </Center>
+        </VStack>
     )
 }

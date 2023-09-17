@@ -86,7 +86,7 @@ export const ItemCard = ({_item_id}: Props) => {
                             backgroundClip="text">
                             Health Harbor - Single Item View
                         </Heading>
-                        <Spacer/>
+                        <Spacer height={20}/>
                     </Center>
                 </>
                 :
@@ -122,6 +122,7 @@ export const ItemCard = ({_item_id}: Props) => {
                                     bgGradient="linear(to-r, brand.300, brand.200)"
                                     color="white"
                                     variant="solid"
+                                    isDisabled={item.quantity <= 0}
                                     onClick={() => {update_quantity(-1)}}
                                 >
                                     Check out
