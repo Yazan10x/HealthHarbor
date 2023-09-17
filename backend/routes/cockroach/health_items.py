@@ -46,7 +46,7 @@ def get_item_by_label(label: str) -> dict:
         cur.execute(
             f"SELECT * FROM items WHERE label = '{label}'"
         )
-        logging.debug("get_item(): status message: %s",
+        logging.debug("get_item_by_label(): status message: %s",
                         cur.statusmessage)
 
         # assume get_item_by_label always returns exactly one entry
