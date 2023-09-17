@@ -10,9 +10,6 @@ import { ItemCard } from '../Comp/ItemCard';
 import { ItemAPI } from '../APIs/ItemAPI';
 import {useEffect, useState} from "react";
 
-interface Props {
-}
-
 export const Items = () => {
 
     const query_items = () => {
@@ -38,7 +35,7 @@ export const Items = () => {
                         size="lg"
                         bgGradient="linear(to-r, brand.300, brand.200)"
                         backgroundClip="text">
-                        Items
+                        Inventory
                     </Heading>
                     <Spacer height={20}/>
                 </Box>

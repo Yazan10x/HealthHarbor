@@ -42,8 +42,6 @@ export const ItemCard = ({_item_id}: Props) => {
     const get_item = () => {
         ItemAPI.get_item(final_item_id!).then((res) =>{
             setItem(res)
-            console.log(res.label)
-            console.log(res.quantity)
             if (item_id) {
                 toast({
                     title: 'QR Code Scanned',
