@@ -30,6 +30,7 @@ import {
 import * as React from "react";
 import {useEffect, useState} from 'react';
 import {CohereAPI} from "../APIs/CohereAPI";
+import {BrowserView, MobileView} from 'react-device-detect';
 import {MedicineEntry} from "../Models/MedicineEntries";
 import {MedicineCard} from "../Comp/MedicineCard";
 import {EditIcon} from "@chakra-ui/icons";
@@ -247,18 +248,32 @@ export const Search = () => {
                                 <Spacer/>
                             </VStack>
                             <Spacer/>
+                            <BrowserView>
+                                { medicineEntries
+                                    ?
+                                    <VStack width={"500px"}>
+                                        <MedicineCard entry={medicineEntries?.at(0)}></MedicineCard>
+                                        <MedicineCard entry={medicineEntries?.at(1)}></MedicineCard>
+                                        <MedicineCard entry={medicineEntries?.at(2)}></MedicineCard>
+                                    </VStack>
+                                    : <></>
+                                }
+                            </BrowserView>
+                        </HStack>
+                    </Center>
+                    <Center>
+                        <MobileView>
                             { medicineEntries
                                 ?
-                                <VStack width={"500px"}>
+                                <VStack width={"100%"}>
                                     <MedicineCard entry={medicineEntries?.at(0)}></MedicineCard>
                                     <MedicineCard entry={medicineEntries?.at(1)}></MedicineCard>
                                     <MedicineCard entry={medicineEntries?.at(2)}></MedicineCard>
                                 </VStack>
                                 : <></>
                             }
-                        </HStack>
+                        </MobileView>
                     </Center>
-
                 </VStack>
             </Center>
         </>

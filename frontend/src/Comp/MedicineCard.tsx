@@ -52,12 +52,11 @@ export const MedicineCard = ({entry}: Props) => {
                     direction={{ base: 'column', sm: 'row' }}
                     overflow='hidden'
                     variant='outline'
-                    height={'180px'}
-                    width={'600px'}
                 >
                     <Image
                         objectFit='cover'
                         maxW={{ base: '100%', sm: '200px' }}
+                        maxH={{ base: '100%', sm: '200px' }}
                         src={item.url}
                         alt={item.url}
                     />
@@ -84,23 +83,7 @@ export const MedicineCard = ({entry}: Props) => {
                             <Text py='2'>
                                 {item.description}
                             </Text>
-
                         </CardBody>
-
-                        <CardFooter>
-                            <HStack>
-                                <Button
-                                    bgGradient="linear(to-r, brand.200, brand.100)"
-                                    color="white"
-                                    variant="solid"
-                                    onClick={() => {
-                                        window.location.pathname = "/item/" + item?.id
-                                    }}
-                                >
-                                    View Medicine
-                                </Button>
-                            </HStack>
-                        </CardFooter>
                     </Stack>
                 </Card>
                 :
