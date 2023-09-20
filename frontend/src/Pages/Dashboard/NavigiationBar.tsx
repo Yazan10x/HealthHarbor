@@ -67,7 +67,7 @@ export const NavBar = () => {
               textTransform={'uppercase'}
               display="inline-block"
               fontSize="20"
-              bgGradient="linear(to-r, brand.200, brand.100)"
+              bgGradient="linear(to-r, brand.200, brand.300)"
               backgroundClip="text"
               p={2}
               alignSelf={'flex-start'}
