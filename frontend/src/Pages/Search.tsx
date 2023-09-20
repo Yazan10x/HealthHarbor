@@ -28,7 +28,7 @@ import {
     ModalCloseButton, ModalBody, ModalFooter, useDisclosure
 } from '@chakra-ui/react';
 import * as React from "react";
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {CohereAPI} from "../APIs/CohereAPI";
 import {BrowserView, MobileView} from 'react-device-detect';
 import {MedicineEntry} from "../Models/MedicineEntries";
@@ -42,6 +42,7 @@ export const Search = () => {
     const [submitted, setSubmitted] = useState<boolean>(false)
     const [medicineEntries, setMedicineEntries] = useState<Array<MedicineEntry>>()
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const scrollRef = useRef(null);
 
     const onSubmit = () => {
         setLoading(true)
@@ -52,6 +53,13 @@ export const Search = () => {
         })
     }
 
+    function scrollToElement() {
+        if (scrollRef.current) {
+            // @ts-ignore
+            scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
     const canSubmit = () => {
         return textArea === ''
     }
@@ -59,6 +67,10 @@ export const Search = () => {
     useEffect(() => {
         onOpen()
     }, [])
+
+    useEffect(() => {
+        scrollToElement()
+    }, [medicineEntries])
 
     return (
         <>
@@ -235,7 +247,7 @@ export const Search = () => {
                                                     isDisabled={false}
                                                     onClick={() => {
                                                         setSubmitted(false)
-                                                        window.location.reload()
+                                                        setMedicineEntries(undefined)
                                                     }}
                                                 >
                                                     <EditIcon/>
@@ -272,6 +284,7 @@ export const Search = () => {
                                 </VStack>
                                 : <></>
                             }
+                            <div ref={scrollRef}/>
                         </MobileView>
                     </Center>
                 </VStack>
