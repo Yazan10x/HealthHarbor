@@ -13,10 +13,22 @@ import {
     Button,
     Radio,
     RadioGroup,
-    Stack, Select, Spacer, HStack, Text, IconButton
+    Stack,
+    Select,
+    Spacer,
+    HStack,
+    Text,
+    IconButton,
+    Badge,
+    Link,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalCloseButton, ModalBody, ModalFooter, useDisclosure
 } from '@chakra-ui/react';
 import * as React from "react";
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import {CohereAPI} from "../APIs/CohereAPI";
 import {MedicineEntry} from "../Models/MedicineEntries";
 import {MedicineCard} from "../Comp/MedicineCard";
@@ -28,6 +40,7 @@ export const Search = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const [submitted, setSubmitted] = useState<boolean>(false)
     const [medicineEntries, setMedicineEntries] = useState<Array<MedicineEntry>>()
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const onSubmit = () => {
         setLoading(true)
@@ -42,30 +55,74 @@ export const Search = () => {
         return textArea === ''
     }
 
+    useEffect(() => {
+        onOpen()
+    }, [])
+
     return (
         <>
             <Center>
 
                 <VStack
                     width='100%'
-                    spacing={10}
-                    align='center'
                 >
                     <Box>
-                        <Heading
+                        <Text
+                            textTransform={'uppercase'}
                             display="inline-block"
-                            as="h2"
-                            size="lg"
+                            fontSize="20"
                             bgGradient="linear(to-r, brand.300, brand.200)"
-                            backgroundClip="text">
-                            Search for Medicine
-                        </Heading>
+                            backgroundClip="text"
+                            p={2}
+                            alignSelf={'flex-start'}
+                            rounded={'md'}>
+                            Health Harbor AI Search Engine
+                        </Text>
                     </Box>
+                    <>
+                        <Badge
+                            colorScheme='red'
+                            onClick={onOpen}
+                        >
+                            Experimental, click to learn more
+                        </Badge>
+                        <Modal isOpen={isOpen} onClose={onClose}>
+                            <ModalOverlay />
+                            <ModalContent>
+                                <ModalHeader>Important Notice: Experimental Use Only</ModalHeader>
+                                <ModalBody>
+                                    <Text>
+                                        HealthHarbor is an experimental AI application designed for educational and research purposes. It is not intended for real-world medical applications. The information provided by HealthHarbor should not be used as a substitute for professional medical advice, diagnosis, or treatment.
+                                    </Text>
+                                    <Spacer height={10}/>
+                                    <Text>
+                                        Please consult with a qualified healthcare provider for any medical concerns or symptoms you may have. The accuracy and reliability of HealthHarbor have not been fully validated for clinical use, and its results should be considered speculative.
+                                    </Text>
+                                    <Spacer height={10}/>
+                                    <Text>
+                                        By using HealthHarbor, you acknowledge and accept that it is not a substitute for professional medical guidance, and you should exercise caution and seek appropriate medical advice when making healthcare decisions.
+                                    </Text>
+                                </ModalBody>
+
+                                <ModalFooter>
+                                    <Button
+                                        bgGradient="linear(to-r, brand.300, brand.200)"
+                                        color="white"
+                                        variant="solid"
+                                        width='40%'
+                                        textAlign='center'
+                                        onClick={onClose}>
+                                        Accept
+                                    </Button>
+                                </ModalFooter>
+                            </ModalContent>
+                        </Modal>
+                    </>
                     <Center>
                         <HStack>
                             <VStack>
-                                <FormControl display='inline-block' width='60%' isDisabled={submitted}>
-                                    <SimpleGrid columns={2} spacing={5} justifyContent='center'>
+                                <FormControl display='inline-block' width='80%' isDisabled={submitted}>
+                                    <SimpleGrid columns={[null, 1, 2]} spacing={5} justifyContent='center'>
                                         <Box>
                                             <FormLabel display="inline-block" textAlign='center'>Age</FormLabel>
                                             <Input
@@ -123,9 +180,14 @@ export const Search = () => {
                                                 <option value='option2'>{"> 160kg"}</option>
                                             </Select>
                                         </Box>
-                                        <Box>
-                                            <FormLabel display="inline-block" textAlign='center'>Sex</FormLabel>
-                                            <RadioGroup>
+                                        <Box
+                                        >
+                                            <FormLabel
+                                                display="inline-block"
+                                                textAlign='center'
+                                            >Sex</FormLabel>
+                                            <RadioGroup
+                                            >
                                                 <Stack direction='row' display='flex' alignItems='center' justifyContent='space-evenly' >
                                                     <Radio value='1'>Male</Radio>
                                                     <Radio value='2'>Female</Radio>
@@ -149,17 +211,17 @@ export const Search = () => {
                                 </FormControl>
                                 <FormControl>
                                     <Box marginTop='30px' textAlign='center'>
-                                        <Button
-                                            bgGradient="linear(to-r, brand.300, brand.200)"
-                                            color="white"
-                                            variant="solid"
-                                            width='40%'
-                                            textAlign='center'
-                                            isLoading={loading}
-                                            isDisabled={submitted || canSubmit()}
-                                            onClick={onSubmit}>
-                                            Submit
-                                        </Button>
+                                            <Button
+                                                bgGradient="linear(to-r, brand.300, brand.200)"
+                                                color="white"
+                                                variant="solid"
+                                                width='40%'
+                                                textAlign='center'
+                                                isLoading={loading}
+                                                isDisabled={submitted || canSubmit()}
+                                                onClick={onSubmit}>
+                                                Submit
+                                            </Button>
                                         { submitted
                                             ?
                                             <>

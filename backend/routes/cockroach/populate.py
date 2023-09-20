@@ -8,7 +8,7 @@ def populate() -> int:
     delete_item_table()
     print("creating new empty table...")
     create_item_table()
-    data = pd.read_csv('backend/routes/cockroach/drugs_info_count.csv')
+    data = pd.read_csv('routes/cockroach/drugs_info_count.csv')
     dict_data = data.to_dict('records')
     count = 0
     print("now populating table...")

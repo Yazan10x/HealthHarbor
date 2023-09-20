@@ -21,26 +21,19 @@ import {ItemAPI} from "../APIs/ItemAPI";
 import * as React from "react";
 
 interface Props {
-    _item_id?: string | undefined
+    _item?: HealthItem
 }
 
 
-export const ItemCard = ({_item_id}: Props) => {
+export const ItemCard = ({_item}: Props) => {
 
     let {item_id} = useParams();
-    let final_item_id: string;
-
-    if (_item_id) {
-        final_item_id = _item_id
-    } else {
-        final_item_id = item_id!
-    }
 
     const [item, setItem] = useState<HealthItem | undefined>(undefined);
     const toast = useToast()
 
     const get_item = () => {
-        ItemAPI.get_item(final_item_id!).then((res) =>{
+        ItemAPI.get_item(item_id!).then((res) =>{
             setItem(res)
             if (item_id) {
                 toast({
@@ -68,7 +61,12 @@ export const ItemCard = ({_item_id}: Props) => {
     }
 
     useEffect(() => {
-        get_item()
+
+        if (_item) {
+            setItem(_item)
+        } else if (item_id) {
+            get_item()
+        }
     }, [])
 
     return (

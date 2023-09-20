@@ -66,7 +66,7 @@ export const MedicineCard = ({entry}: Props) => {
                         <CardBody>
                             <Link
                                 onClick={() => {
-                                    window.location.pathname = '/item/' + item?.id
+                                    window.location.pathname = '/inventory/' + item?.id
                                 }}
                             >
                                 <Heading
@@ -78,8 +78,8 @@ export const MedicineCard = ({entry}: Props) => {
                             </Link>
 
                             <HStack>
-                                <Badge colorScheme={'purple'}>{"Decease: " + entry?.disease}</Badge>
-                                <Badge colorScheme={'red'}>{"Confidence: " + entry?.confidence.toFixed(2)}</Badge>
+                                <Badge colorScheme={'purple'}>{"Diseases: " + entry?.disease}</Badge>
+                                <Badge colorScheme={'red'}>{"Confidence: " + entry?.confidence.toFixed(2) + "%"}</Badge>
                             </HStack>
                             <Text py='2'>
                                 {item.description}

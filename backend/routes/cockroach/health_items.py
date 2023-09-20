@@ -40,6 +40,7 @@ def get_item(id: str) -> dict:
 
     return item
 
+
 def get_item_by_label(label: str) -> dict:
     conn = get_conn()
     with conn.cursor() as cur:
@@ -55,6 +56,7 @@ def get_item_by_label(label: str) -> dict:
     close_conn(conn)
 
     return item
+
 
 def get_items(query: str) -> [str]:
     conn = get_conn()
@@ -146,3 +148,6 @@ def delete_item(id: str) -> bool:
 # item_json = json.loads(item)
 # create_item(item_json)
 # print(get_items('SELECT * FROM items'))
+
+print("Yazan")
+[print(item['id'] + ' ' + item['label']) for item in get_items("SELECT * FROM items")]

@@ -63,11 +63,17 @@ export const NavBar = () => {
         </Flex>
         <Center>
           <Spacer width={"40px"}></Spacer>
-          <Image
-              src="/logo192.png"
-              width={"40px"}
-              alt={"QR CODE LOGO"}>
-          </Image>
+          <Text
+              textTransform={'uppercase'}
+              display="inline-block"
+              fontSize="20"
+              bgGradient="linear(to-r, brand.200, brand.100)"
+              backgroundClip="text"
+              p={2}
+              alignSelf={'flex-start'}
+              rounded={'md'}>
+            Health Harbor
+          </Text>
         </Center>
         <Flex
             flex={{ base: 1 }}
@@ -241,15 +247,15 @@ interface NavItem {
 
 const NAV_ITEMS_FOR_ANONYMOUS_USER: Array<NavItem> = [
   {
-    label: 'Home',
+    label: 'Search',
     route: 'search'
   },
   {
-    label: 'Scan',
-    route: 'scanner'
+    label: 'Inventory',
+    route: 'inventory'
   },
   {
-    label: 'Items',
-    route: 'items'
+    label: 'Our Story',
+    route: 'our-story'
   },
 ]

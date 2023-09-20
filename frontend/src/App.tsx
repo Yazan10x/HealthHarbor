@@ -15,7 +15,8 @@ import {Home} from "./Pages/Home";
 import {Search} from "./Pages/Search";
 import {QrScanner} from "./Comp/QrScanner";
 import {ItemCard} from "./Comp/ItemCard";
-import {Items} from "./Pages/Items";
+import {Inventory} from "./Pages/Inventory";
+import {OurStory} from "./Pages/Other/OurStory";
 
 const theme = extendTheme({
   initialColorMode: 'dark',
@@ -41,8 +42,9 @@ export const App = () => (
         <Route path="/" element={<Dashboard/>}>
           <Route path="/search" element={<Search/>}/>
           <Route path="/scanner" element={<QrScanner/>}/>
-          <Route path="/items" element={<Items/>}/>
-          <Route path="/item/:item_id" element={<ItemCard/>}/>
+          <Route path="/inventory" element={<Inventory/>}/>
+          <Route path="/inventory/:item_id" element={<ItemCard/>}/>
+          <Route path="/our-story" element={<OurStory/>}/>
         </Route>
 
           <Route path="*" element={<NotFound/>}/>
