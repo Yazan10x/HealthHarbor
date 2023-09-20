@@ -149,5 +149,5 @@ def delete_item(id: str) -> bool:
 # create_item(item_json)
 # print(get_items('SELECT * FROM items'))
 
-print("Yazan")
-[print(item['id'] + ' ' + item['label']) for item in get_items("SELECT * FROM items")]
+# print("Yazan")
+# [print(item['id'] + ' ' + item['label']) for item in get_items("SELECT * FROM items")]
