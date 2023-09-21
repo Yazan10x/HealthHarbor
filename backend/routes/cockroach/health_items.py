@@ -1,5 +1,6 @@
 import logging, json
 from routes.cockroach.conn import *
+from routes.cockroach.utilities import *
 
 
 def create_item_table() -> None:
@@ -25,6 +26,10 @@ def delete_item_table() -> None:
 
 
 def get_item(id: str) -> dict:
+    
+    # sanitize
+    id = add_slash(id)
+
     conn = get_conn()
     with conn.cursor() as cur:
         cur.execute(
@@ -42,6 +47,10 @@ def get_item(id: str) -> dict:
 
 
 def get_item_by_label(label: str) -> dict:
+
+    # sanitize
+    label = add_slash(label)
+
     conn = get_conn()
     with conn.cursor() as cur:
         cur.execute(
@@ -72,6 +81,13 @@ def get_items(query: str) -> [str]:
 
 
 def create_item(item: dict) -> dict:
+
+    # sanitize json data
+    item['id'] = add_slash(item['id'], '\'', '\'')
+    item['description'] = add_slash(item['description'], '\'', '\'')
+    item['label'] = add_slash(item['label'], '\'', '\'')
+    item['url'] = add_slash(item['url'], '\'', '\'')
+
     conn = get_conn()
     with conn.cursor() as cur:
         cur.execute(
@@ -87,6 +103,13 @@ def create_item(item: dict) -> dict:
 
 
 def update_item(item: dict) -> dict:
+
+    # sanitize json data
+    item['id'] = add_slash(item['id'], '\'', '\'')
+    item['description'] = add_slash(item['description'], '\'', '\'')
+    item['label'] = add_slash(item['label'], '\'', '\'')
+    item['url'] = add_slash(item['url'], '\'', '\'')
+
     conn = get_conn()
     with conn.cursor() as cur:
         cur.execute(
@@ -102,6 +125,10 @@ def update_item(item: dict) -> dict:
 
 
 def delete_item(id: str) -> bool:
+
+    # sanitize
+    id = add_slash(id)
+
     conn = get_conn()
     with conn.cursor() as cur:
         cur.execute(
