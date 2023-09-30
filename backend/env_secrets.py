@@ -6,7 +6,7 @@ import os
 
 
 def load_secrets() -> None:
-    if os.environ.get('Comment') is None:
+    if os.environ.get('DB_URI') is None:
 
         with open('secrets.json') as s:
             secret_json = json.load(s)
