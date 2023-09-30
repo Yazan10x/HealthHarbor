@@ -1,4 +1,4 @@
-from cohere_api.healthHarborModel.classificationModel import _get_disease_with_medicine
+from cohere_api.healthHarborModel.classificationModel import get_top_disease_with_medicine as _get_disease_with_medicine
 
 return_sample = [
     {
