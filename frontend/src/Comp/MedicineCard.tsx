@@ -1,4 +1,4 @@
-import {HealthItem} from "../Models/HealthItem";
+import {Treatment} from "../Models/Treatment";
 import {
     Card,
     HStack,
@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react'
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {ItemAPI} from "../APIs/ItemAPI";
+import {TreatmentAPI} from "../APIs/TreatmentAPI";
 import * as React from "react";
 import {MedicineEntry} from "../Models/MedicineEntries";
 
@@ -30,10 +30,10 @@ export const MedicineCard = ({entry}: Props) => {
 
 
 
-    const [item, setItem] = useState<HealthItem | undefined>(undefined);
+    const [item, setItem] = useState<Treatment | undefined>(undefined);
 
     const get_item = () => {
-        ItemAPI.get_item_by_label(entry!.medicine).then((res) =>{
+        TreatmentAPI.get_treatment_by_label(entry!.medicine).then((res) =>{
             setItem(res)
         })
         // ItemAPI.get_item("6c39313e-5500-11ee-8c99-0242ac120002").then((res) =>{
@@ -57,8 +57,8 @@ export const MedicineCard = ({entry}: Props) => {
                         objectFit='cover'
                         maxW={{ base: '100%', sm: '200px' }}
                         maxH={{ base: '100%', sm: '200px' }}
-                        src={item.url}
-                        alt={item.url}
+                        src={item.image_url}
+                        alt={item.image_url}
                     />
 
                     <Stack>

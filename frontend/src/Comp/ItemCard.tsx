@@ -1,4 +1,4 @@
-import {HealthItem} from "../Models/HealthItem";
+import {Treatment} from "../Models/Treatment";
 import {
     Card,
     HStack,
@@ -17,11 +17,11 @@ import {
 } from '@chakra-ui/react'
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {ItemAPI} from "../APIs/ItemAPI";
+import {TreatmentAPI} from "../APIs/TreatmentAPI";
 import * as React from "react";
 
 interface Props {
-    _item?: HealthItem
+    _item?: Treatment
 }
 
 
@@ -29,11 +29,11 @@ export const ItemCard = ({_item}: Props) => {
 
     let {item_id} = useParams();
 
-    const [item, setItem] = useState<HealthItem | undefined>(undefined);
+    const [item, setItem] = useState<Treatment | undefined>(undefined);
     const toast = useToast()
 
     const get_item = () => {
-        ItemAPI.get_item(item_id!).then((res) =>{
+        TreatmentAPI.get_treatment(item_id!).then((res) =>{
             setItem(res)
             if (item_id) {
                 toast({
@@ -49,7 +49,7 @@ export const ItemCard = ({_item}: Props) => {
 
     const update_quantity = (q: number) => {
         item!.quantity += q
-        ItemAPI.update_item(item!).then((res) => {
+        TreatmentAPI.update_treatment(item!).then((res) => {
             setItem(res)
             toast({
                 title: 'Item update successfully',
@@ -97,8 +97,8 @@ export const ItemCard = ({_item}: Props) => {
                     <Image
                         objectFit='cover'
                         maxW={{ base: '100%', sm: '200px' }}
-                        src={item.url}
-                        alt={item.url}
+                        src={item.image_url}
+                        alt={item.image_url}
                     />
 
                     <Stack>

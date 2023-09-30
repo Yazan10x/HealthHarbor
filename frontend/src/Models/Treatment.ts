@@ -1,8 +1,8 @@
 
-export interface HealthItem {
+export interface Treatment {
     id: string
     label: string
     quantity: number
     description: string
-    url: string
+    image_url: string
 }
