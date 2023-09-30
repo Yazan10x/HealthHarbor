@@ -1,3 +1,4 @@
+import os
 import cohere
 from cohere.responses.classify import Example
 import pandas as pd
@@ -6,7 +7,7 @@ from imblearn.under_sampling import RandomUnderSampler
 import heapq
 
 # Constants
-COHERE_API_KEY = 'dW7n7345zsD7VRvluLFqZbRZLtMZfdm3Zf7CS0DA'
+COHERE_API_KEY = os.environ.get('COHERE_API_KEY')
 
 
 def get_top_disease_with_medicine(description: str) -> list[dict[str, str]]:
@@ -66,11 +67,3 @@ def get_top_disease_with_medicine(description: str) -> list[dict[str, str]]:
                 topnames.append(dictionar)
 
     return topnames
-
-
-if __name__ == '__main__':
-    # Example usage
-    print(get_top_disease_with_medicine("Big red spots on body"))
-    print(get_top_disease_with_medicine("Really stressed about exams. Want to kill myself."))
-    # Additional test cases
-    # print(_get_top_disease_with_medicine("Pain in left arm"))

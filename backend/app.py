@@ -6,7 +6,10 @@ from flask_cors import CORS
 from routes.treatments import treatments
 from routes.cohere_api import cohere_blueprint
 from logging import FileHandler,WARNING
+from env_secrets import load_secrets
 
+
+load_secrets()
 app = Flask(__name__)
 
 # Services
