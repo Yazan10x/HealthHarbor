@@ -33,11 +33,13 @@ def get_item_by_label(item_label: str) -> Response:
 
 @treatments.route("/get_treatments", methods=['POST'])
 def get_treatments() -> Response:
-    items = list(HealthHarborDB.treatments_coll.find_one())
+    items = list(HealthHarborDB.treatments_coll.find())
+    res = []
     for item in items:
         item = Treatment.from_json(item).to_json()
         item['_id'] = item['_id'].__str__()
-    return jsonify()
+        res.append(item)
+    return jsonify(res)
 
 
 @treatments.route("/create_treatment", methods=['POST'])
