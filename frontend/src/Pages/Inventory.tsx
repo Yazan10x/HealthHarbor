@@ -4,21 +4,21 @@ import {
     Heading,
     Center, Spacer, Text
 } from '@chakra-ui/react';
-import {HealthItem} from "../Models/HealthItem";
+import {Treatment} from "../Models/Treatment";
 import * as React from "react";
 import { ItemCard } from '../Comp/ItemCard';
-import { ItemAPI } from '../APIs/ItemAPI';
+import { TreatmentAPI } from '../APIs/TreatmentAPI';
 import {useEffect, useState} from "react";
 
 export const Inventory = () => {
 
     const query_items = () => {
-        ItemAPI.get_items("SELECT * FROM items").then((res) =>{
+        TreatmentAPI.get_treatments("SELECT * FROM items").then((res) =>{
             setItems(res)
         })
     }
     
-    const [items, setItems] = useState<HealthItem[] | undefined>(undefined);
+    const [items, setItems] = useState<Treatment[] | undefined>(undefined);
 
     useEffect(() => {
         query_items()

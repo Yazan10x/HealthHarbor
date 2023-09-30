@@ -1,4 +1,4 @@
-import {HealthItem} from "../Models/HealthItem";
+import {Treatment} from "../Models/Treatment";
 import {Html5QrcodeScanner} from "html5-qrcode";
 import {useEffect, useState} from "react";
 import {Box, Center, useToast, Button, Heading, Spacer, VStack, Text} from "@chakra-ui/react";
