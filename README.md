@@ -1,7 +1,7 @@
 # HealthHarbor
 
-## Try it live
-- [http://healthharbor.tech](http://healthharbor.tech)
+## Try it out
+- [View on Devpost](https://devpost.com/software/healthharbor)
 
 ## Inspiration
 In today's world, health has never been more paramount. Healthcare professionals are facing unprecedented demands on their time and resources. Our goal is to provide a solution that benefits both medical providers and patients alike.
@@ -22,10 +22,10 @@ We take pride in achieving the following milestones:
 - Seamlessly integrating CockroachDB and Cohere into our system
 - Leveraging a wide array of frameworks and libraries
 - Implementing rigorous integration and unit testing
-- Successfully hosting our platform on Digital Ocean for both the frontend and backend.
+- Successfully hosting our platform on Digital Ocean for both the frontend and backend
 
 ## What we learned
-We discovered that successful teamwork in Software Development relies on clear communication and shared goals. Additionally, we realized the vital importance of carefully planning both the finer intricacies and the broader aspects of our project to ensure the smooth execution of our plans.
+We discovered that successful teamwork in software development relies on clear communication and shared goals. Additionally, we realized the vital importance of carefully planning both the finer intricacies and the broader aspects of our project to ensure the smooth execution of our plans.
 
 ## What's next for HealthHarbor
 Looking ahead, we have several exciting plans:
@@ -33,7 +33,7 @@ Looking ahead, we have several exciting plans:
 - Implementing advanced metrics
 - Expanding our dataset
 - Scaling our platform to reach a broader audience
-- Adding more innovative features to further enhance our offerings.
+- Adding more innovative features to further enhance our offerings
 
 ## Built With
 - chakraui
@@ -45,6 +45,3 @@ Looking ahead, we have several exciting plans:
 - python
 - react
 - typescript
-
-## Try it out
-- [Visit HealthHarbor](http://healthharbor.tech)
